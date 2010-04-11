@@ -1,0 +1,8 @@
+.classpath
+.project
+.settings/*
+javadoc.xml
+doc/*
+bin/*
+tomcat/*
+www-test/*
