@@ -8,6 +8,8 @@ simple projects to get up and running with as little configuration as possible.
 
   [1]: http://en.wikipedia.org/wiki/Wizard_%28software%29 "Wizard on Wikipedia"
 
+![sample-wizard](http://binarymuse.github.com/gwt-wizard/images/sample-wizard.png)
+
 GWT-Wizard has a few nice features, including the following:
 
   * Flexible view component: use the built in view, or provide your own by
@@ -31,6 +33,7 @@ Getting Started
 Getting started with GWT-Wizard is easy:
 
   1. Put `gwt-wizard.jar` on your project's build path
+  2. Inherit the wizard module with `<inherits name='net.binarymuse.gwt.Wizard' />`
   2. Extend `WizardContext` to define your context object
   3. Create one or more page for your wizard (a single-page wizard seems kinda
      silly) by extending `WizardPage` (the only methods you **must** provide
