@@ -1,13 +1,39 @@
 body {
-  margin: 0px;
-  padding: 0px;
+  padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Arial, sans-serif;
+}
+
+div#title {
+  text-align: center;
+}
+
+div#nav h1 {
+  font-size: 20pt;
+}
+
+div#nav ul {
+  margin-left: 10px;
+  padding-left: 10px;
+}
+
+div#nav {
+  position: absolute;
+  left: 50%;
+  margin-left: -480;
+  width: 250px;
+  top: 50px;
 }
 
 div#main {
-  width: 900px;
   position: relative;
   left: 50%;
-  margin-left: -450px;
+  top: 10px;
+  margin-left: -225px;
+  width: 705px;
+  padding-left: 5px;
 }
 
 code {

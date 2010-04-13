@@ -47,6 +47,6 @@ More Details and Examples
 -------------------------
 
 You can find code samples, working examples, and more at the
-[the GitHub wiki for GWT-Wizard][2].
+[GWT-Wizard's home on the web][2].
 
-  [2]: http://wiki.github.com/BinaryMuse/gwt-wizard/ "GWT-Wizard GitHub Wiki"
+  [2]: http://gwt-wizard.binarymuse.net/ "GWT-Wizard Home Page"
