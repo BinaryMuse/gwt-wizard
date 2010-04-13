@@ -1,8 +1,8 @@
 .classpath
 .project
 .settings/*
-gh-pages-source/httpdocs/*
-gh-pages-source/tmp/*
+pages-source/httpdocs/*
+pages-source/tmp/*
 javadoc.xml
 doc/*
 bin/*
