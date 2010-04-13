@@ -1,0 +1,13 @@
+<html>
+<head>
+    <title>GWT-Wizard: <%= @item[:title] %></title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen" />
+</head>
+<body>
+  <div id="main">
+  <h1><%= @item[:title] %>
+  <%= yield %>
+  </div>
+</body>
+</html>

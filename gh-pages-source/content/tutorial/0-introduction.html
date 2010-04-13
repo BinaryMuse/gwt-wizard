@@ -1,0 +1,30 @@
+---
+title: Tutorial - 0 - Introduction
+permalink: /tutorial/0-introduction.html
+---
+The GWT-Wizard tutorial will guide you in creating a new project and implementing a wizard with GWT-Wizard. By the end of the tutorial, we will have covered the following topics:
+
+<ol>
+  <li>Creating a new project and installing GWT-Wizard</li>
+  <li>Creating a @WizardContext@ for wizard specific data</li>
+  <li>Creating wizard pages using MVP techniques</li>
+  <li>Controlling wizard flow with @WizardPage@ hooks and page links</li>
+  <li>Improving wizard performance with lazy page loading and @GWT.runAsync@</li>
+  <li>Providing your own custom view for the wizard</li>
+</ol>
+
+<h2>Our Wizard</h2>
+
+We will be designing a wizard for a fake web site with some sort of subscription plan. The wizard will guide the user through creating a new account and choosing a plan. Our wizard will have the following pages and logic:
+
+<ol>
+  <li>Welcome page</li>
+  <li>User and subscription information</li>
+  <li>Free plan information</li>
+  <li>Deluxe plan information</li>
+  <li>Confirmation</li>
+</ol>
+
+In step two, the user will choose which subscription plan they wish to use. If the user chooses the free plan, the wizard will continue to page three and then skip page four; if the user choose the deluxe plan, the wizard will skip page three and display page four instead.
+
+<div style="text-align: center;">&lt;&lt; <a href="/index.html">Home</a> | <a href="/tutorial/1-getting-started.html">Tutorial: 1 - Getting Started</a> &gt;&gt;</div>

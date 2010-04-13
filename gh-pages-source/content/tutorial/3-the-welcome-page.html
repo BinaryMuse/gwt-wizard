@@ -1,0 +1,82 @@
+---
+title: Tutorial - 3 - The Welcome Page
+permalink: /tutorial/3-the-welcome-page.html
+---
+Let's create a new package in our @client@ package called @page@ where we can put our wizard's pages (@net.binarymuse.gwt.sample.gwtwizard.client.page@). Create a new class in this package called @WelcomePage@ that extends @WizardPage<SignupWizardContext>@.
+
+All <code>WizardPage</code>s must define three methods: @getPageID()@, @getTitle()@, and @asWidget()@.
+
+<h2>PageIDs</h2>
+
+Often, you will want to refer to a specific page type without having an instance of that page handy. <code>PageID</code>s are the solution. Create a public, static, final instance of this type in your <code>WizardPage</code>s and return this object from your page's @getPageID@:
+
+<pre><code class="CodeRay language-java">public static final PageID PAGEID = new PageID();
+
+@Override
+public PageID getPageID() {
+    return PAGEID;
+}</code></pre>
+
+<h2>Page Titles</h2>
+
+The titles of your pages appear in the left-hand pane in the wizard UI element. The currently active page has an indicator next to it. The values added to this element are provided by your pages' @getTitle()@ methods.
+
+Sometimes, you may not want every page to show up in the list of pages. For example, suppose a logic branch will show one of two or more pages, but all the pages represent the same "step" (for example, a "Payment" step could be implemented by a @CreditCardPage@, @PayPalPage@, etc). In these cases, you have a couple options.
+
+If you don't want your page to have an associated title at all (e.g., the currently active page does not change when the page is displayed), return @null@ or an empty string. If you want your page to share a title with other pages (like in the "Payment" step example, above), return the same title from each page. Any duplicate titles will refer to the same element in the page title list.
+
+<h2>asWidget()</h2>
+
+Each page implements an @asWidget()@ method that returns a GWT @Widget@. This method provides the actual UI of the page so that it can be added to the wizard. A good practice is to make your <code>WizardPage</code>s follow the MVP pattern, which means they define a @Display@ interface that another class implements. The next page we create in this tutorial will follow the MVP pattern; however, this page will use a simple @FlowPanel@ for its @Widget@ (since the content is static).
+
+<h2>WelcomePage.java</h2>
+
+Here is *WelcomePage.java*:
+
+<pre><code class="CodeRay language-java">package net.binarymuse.gwt.sample.gwtwizard.client.page;
+
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Widget;
+
+import net.binarymuse.gwt.client.ui.wizard.WizardPage;
+import net.binarymuse.gwt.sample.gwtwizard.client.SignupWizardContext;
+
+public class WelcomePage extends WizardPage<SignupWizardContext> {
+
+    public static final PageID PAGEID = new PageID();
+
+    private FlowPanel panel;
+
+    public WelcomePage() {
+        panel = new FlowPanel();
+        panel.add(new HTML("<h1>Welcome</h1>"));
+        panel.add(new HTML("<p>This wizard will guide you through " +
+            "the process of creating a new account.</p>"));
+        panel.add(new HTML("<p>When you are ready to being, please " +
+            "click \"Next.\"</p>"));
+    }
+
+    @Override
+    public Widget asWidget() {
+        return panel;
+    }
+
+    @Override
+    public String getTitle() {
+        return "Welcome";
+    }
+
+    @Override
+    public PageID getPageID() {
+        return PAGEID;
+    }
+
+}</code></pre>
+
+<h2>Other Page Stuff</h2>
+
+You may have noticed that @WizardPage@ uses a type parameter. This type parameter is defined as @<C extends WizardContext>@. This is because there are methods that the base implementation of @WizardPage@ provides that we did not discuss here--for example, @getContext()@ returns the parent wizard's context in a type-safe way. We will discuss more advanced @WizardPage@ functions later in the tutorial.
+
+<div style="text-align: center;">[[Home]]<br />
+&lt;&lt; [[Tutorial: 2 - Your Wizard Context]] | [[Tutorial: 4 - Creating and Styling the Wizard]] &gt;&gt;</div>

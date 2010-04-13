@@ -1,0 +1,21 @@
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+div#main {
+  width: 900px;
+  position: relative;
+  left: 50%;
+  margin-left: -450px;
+}
+
+code {
+  background-color: #EEEEEE;
+  border: 1px solid #DDDDDD;
+}
+
+code.CodeRay {
+  background-color: none;
+  border: none;
+}

@@ -1,0 +1,115 @@
+---
+title: Tutorial - 2 - Your Wizard Context
+permalink: /tutorial/2-your-wizard-context.html
+---
+Since a wizard has multiple steps (or "pages"), you will need some sort of shared data object that can be accessed by every page of your wizard. This object is a subclass of @WizardContext@. @WizardContext@ only defines a few essential functions--the rest of the implementation is left completely up to you.
+
+For our fake sign-up wizard, we need to collect the following specific pieces of data:
+
+<ul>
+  <li>Requested username</li>
+  <li>Password</li>
+  <li>Subscription plan choice (free or paid)</li>
+  <li>Credit card type and number (if they choose the paid plan)</li>
+</ul>
+
+Lets create a new class, @SignupWizardContext@, that defines this information:
+
+<pre><code class="CodeRay language-java">package net.binarymuse.gwt.sample.gwtwizard.client;
+
+import net.binarymuse.gwt.client.ui.wizard.WizardContext;
+
+public class SignupWizardContext extends WizardContext {
+
+    private enum PlanType {
+        FREE,
+        PAID
+    }
+
+    private enum CreditCardType  {
+        VISA,
+        MASTERCARD,
+        DISCOVER,
+        AMERICAN_EXPRESS
+    }
+
+    private boolean        complete;
+
+    private String         username;
+    private String         password;
+    private PlanType       plan;
+    private CreditCardType creditCardType;
+    private String         creditCardNumber;
+
+    public SignupWizardContext() {
+        reset();
+    }
+
+    @Override
+    public void reset() {
+        setComplete(false);
+
+        setUsername("");
+        setPassword("");
+        setPlan(null);
+        setCreditCardType(null);
+        setCreditCardNumber("");
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
+    }
+
+    @Override
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPlan(PlanType plan) {
+        this.plan = plan;
+    }
+
+    public PlanType getPlan() {
+        return plan;
+    }
+
+    public void setCreditCardType(CreditCardType creditCardType) {
+        this.creditCardType = creditCardType;
+    }
+
+    public CreditCardType getCreditCardType() {
+        return creditCardType;
+    }
+
+    public void setCreditCardNumber(String creditCardNumber) {
+        this.creditCardNumber = creditCardNumber;
+    }
+
+    public String getCreditCardNumber() {
+        return creditCardNumber;
+    }
+
+}</code></pre>
+
+As you can see, a @WizardContext@ can be as simple as a glorified bag of getters and setters--indeed, low complexity is ideal in a model object. In a more complex application, you may write helper code or annotations to assist in storing the data in a file or database; however, in this tutorial, we will only be dealing with our context in client code, so we won't worry about that.
+
+Now that we've written our context object, we can start creating the pages of our wizard.
+
+<div style="text-align: center;">[[Home]]<br />
+&lt;&lt; [[Tutorial: 1 - Getting Started]] | [[Tutorial: 3 - The Welcome Page]] &gt;&gt;</div>
