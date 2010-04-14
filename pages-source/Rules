@@ -11,22 +11,25 @@
 #   because “*” matches zero or more characters.
 
 compile '/css/*/' do
-  # don’t filter or layout
+  # make all url()'s relative
+  filter :relativize_paths, :type => :css
 end
 
 compile '/images/*/' do
   # don’t filter or layout
 end
 
-#compile '/coderay/' do
-#  # don’t filter or layout
-#end
+compile '/static/*' do
+end
 
 compile '*' do
+  # textile filter
   filter :redcloth
   layout 'default'
+  # colorize html, xml, and java
   filter :colorize_syntax, :colorizers => { :java => :coderay, :html => :coderay, :xml => :coderay }, :coderay => { :line_numbers => :table }
-  #filter :colorize_syntax, :colorizers => { :java => :coderay }
+  # make all href's and src's relative
+  filter :relativize_paths, :type => :html
 end
 
 route '/css/*/' do
@@ -37,9 +40,10 @@ route '/images/*/' do
   item.identifier.chop + "." + item[:extension]
 end
 
-#route '/coderay/' do
-#  '/coderay.css'
-#end
+route '/static/*' do
+  # /static/javadoc/foo.html/ -> /javadoc/foo.html
+  item.identifier[7..-2]
+end
 
 route '*' do
   if item[:permalink]
