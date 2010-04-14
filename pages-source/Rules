@@ -19,7 +19,7 @@ compile '/images/*/' do
   # don’t filter or layout
 end
 
-compile '/static/*' do
+compile '/static/*/' do
 end
 
 compile '*' do

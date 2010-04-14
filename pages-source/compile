@@ -2,15 +2,13 @@
 
 # The compile script requires that the GWT-Wizard
 # JavaDoc be located in ../doc for JavaDoc inclusion
-if [[ ! -d "../doc" ]] ; then
-  echo "The JavaDoc could not be found in ../doc"
-  echo "Compiling site without copying JavaDoc"
-fi
-
 if [[ -d "../doc" ]] ; then
-  # Copy the JavaDoc to the static directory for static compilation
-  mkdir ./static
+  # Copy the JavaDoc to the static
+  # directory for static compilation
   cp -r ../doc ./static/javadoc
+else
+  echo " WARNING: The JavaDoc could not be found in ../doc"
+  echo " WARNING: Compiling site without copying JavaDoc"
 fi
 
 # Run the nanoc compiler

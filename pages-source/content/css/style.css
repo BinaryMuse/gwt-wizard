@@ -8,13 +8,24 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-div#title {
-  text-align: center;
+img#fork {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  border: none;
 }
 
 div#nav ul {
+  margin: 0px;
+  padding: 0px;
   margin-left: 10px;
   padding-left: 10px;
+}
+
+div#nav ol {
+  margin: 0px;
+  margin-left: 20px;
+  padding-left: 20px;
 }
 
 div#nav {
