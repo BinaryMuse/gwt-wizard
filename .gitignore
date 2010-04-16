@@ -1,7 +1,7 @@
 .classpath
 .project
 .settings/*
-pages-source/httpdocs/*
+pages-source/output/*
 pages-source/tmp/*
 pages-source/static/javadoc/*
 javadoc.xml
