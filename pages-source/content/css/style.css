@@ -9,7 +9,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 img#fork {
-  position: absolute;
+  position: fixed;
   right: 0px;
   top: 0px;
   border: none;
@@ -29,7 +29,7 @@ div#nav ol {
 }
 
 div#nav {
-  position: absolute;
+  position: fixed;
   left: 50%;
   margin-left: -480;
   width: 250px;
