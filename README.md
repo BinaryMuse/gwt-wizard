@@ -16,12 +16,12 @@ GWT-Wizard has a few nice features, including the following:
     implementing provided interfaces.
   * Support for lazy-loading wizard pages: if you don't want to attach your
     wizard's pages to the DOM right away, enable lazy loading and attachment
-    and extend `LazyWizardComposite` for your page widgets.
-  * Useful callbacks for each of your pages: use methods like `beforeShow()`
-    and `beforeNext()` to do setup, cleanup, validation and more in your
-    pages. Cancel page navigation via the provided `NavigationEvent` if
-    you want to cancel a page transition. Set up two-way links between pages
-    based on user input.
+    and extend `LazyComposite` for your page widgets.
+  * Useful transition hooks for each of your pages: use methods like
+    `beforeShow()` and `beforeNext()` to do setup, cleanup, validation and
+    more in your pages. Cancel page navigation via the provided
+    `NavigationEvent` if you want to cancel a page transition. Set up two-way
+    links between pages based on user input.
   * Flexible behavior with sane defaults: GWT-Wizard lets you customize
     virtually every element of your wizard, from how it looks to how it
     behaves. But, if you just want a simple, linear wizard, you don't have
