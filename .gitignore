@@ -1,11 +1,10 @@
 .classpath
 .project
 .settings/*
+gwt-wizard.jar
 pages-source/output/*
 pages-source/tmp/*
 pages-source/static/javadoc/*
 javadoc.xml
 doc/*
 bin/*
-tomcat/*
-www-test/*
