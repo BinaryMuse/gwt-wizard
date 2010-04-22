@@ -26,6 +26,6 @@
     </target>
 
     <target name="clean" description="Cleans the project">
-        <delete dir="out" failonerror="false" />
+        <delete dir="bin" failonerror="false" />
     </target>
 </project>
