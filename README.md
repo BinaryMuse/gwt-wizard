@@ -51,6 +51,12 @@ You can find code samples, working examples, and more at the
 
   [2]: http://gwt-wizard.binarymuse.net/ "GWT-Wizard Home Page"
 
+Project Status
+--------------
+
+GWT-Wizard should be considered alpha software. The API is highly malleable
+and may change from commit to commit.
+
 Generating the Documentation
 ----------------------------
 
