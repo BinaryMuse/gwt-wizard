@@ -1,0 +1,63 @@
+/* Default styles for the Wizard. Any of these can be overridden
+ * in a user's stylesheet if it is injected via that project's
+ * .gwt.xml file. Turn them off completely by setting the wizard's
+ * primary style name to something other than muse-gwt-Wizard.
+ */
+
+.muse-gwt-Wizard {
+	background-color: white;
+	border: 1px solid black;
+}
+
+.muse-gwt-Wizard .valignMiddle {
+	vertical-align: middle;
+}
+
+.muse-gwt-Wizard .rightBorder {
+	border-right: 1px solid black;
+}
+
+.muse-gwt-Wizard .leftBorder {
+	border-left: 1px solid black;
+}
+
+.muse-gwt-Wizard .topBorder {
+	border-top: 1px solid black;
+}
+
+.muse-gwt-Wizard .bottomBorder {
+	border-bottom: 1px solid black;
+}
+
+.muse-gwt-Wizard .wizardTitle {
+	/*border-bottom: 1px solid black;*/
+}
+
+.muse-gwt-Wizard .wizardTitle .gwt-HTML {
+	float: left;
+}
+
+.muse-gwt-Wizard .wizardPages {
+	/*border-right: 1px solid black;*/
+	padding: 5px;
+}
+
+.muse-gwt-Wizard .wizardPages .inactive {
+	color: #888888;
+}
+
+.muse-gwt-Wizard .wizardNavigation {
+	/*border-top: 1px solid black;*/
+	/*border-left: 1px solid black;*/
+}
+
+.muse-gwt-Wizard .wizardContent {
+	padding: 5px;
+	/*border-left: 1px solid black;*/
+}
+
+.muse-gwt-Wizard .wizardTitle .gwt-HTML {
+	font-size: 17pt;
+	font-weight: bolder;
+	padding-left: 5px;
+}
