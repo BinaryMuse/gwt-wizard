@@ -60,13 +60,25 @@ and may change from commit to commit.
 Building GWT-Wizard from Source
 -------------------------------
 
-You can compile GWT-Wizard by running `ant build` from the repo root. You
-can create a JAR file (`gwt-wizard.jar`) by running `ant jar` from the same
-location. You must specify the location of the GWT JARs in an environment
-variable called `GWTPATH`, or else update `build.xml` to change all instances
-of `"${env.GWTPATH}"` to the location of the JARs.
+Assuming you have GWT installed to `/path/to/gwt/gwt-x.y.z/` and Apache
+Ant installed:
 
-`ant clean` will delete the `bin` directory, but not `gwt-wizard.jar`.
+  1. Clone the project and change to the project directory:
+     `git clone git://github.com/BinaryMuse/gwt-wizard.git && cd gwt-wizard`
+  2. Specify the path of the GWT library:
+     `export GWTPATH=/path/to/gwt/gwt-x.y.z/`
+  3. Run the Ant script to build the project (`build` to compile, `jar`
+     (the default) to build a JAR file):
+     `ant`
+
+### Build Targets
+
+  * `ant build`: compile the source and copy both the source and the compiled
+    `.class` files to the `bin` directory
+  * `ant jar` (depends on `build`): create a JAR based on the contents of the
+    `bin` directory
+  * `ant clean`: deletes the `bin` directory (but not the generated
+    `gwt-wizard.jar` file)
 
 Generating the Documentation
 ----------------------------
