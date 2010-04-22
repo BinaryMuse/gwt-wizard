@@ -80,6 +80,8 @@ There are a few things missing from the current iteration of GWT-Wizard:
 
   * Removing pages: once a page has been added to a wizard, it can't
     be removed
+  * DOM dependence: there is some DOM/GWT dependence in classes that should
+    be a presenter (in the MVP sense)
   * Unit Tests: there are currently no unit tests checked in for the project
   * Build scripts: there are currently no build scripts for the project
 
