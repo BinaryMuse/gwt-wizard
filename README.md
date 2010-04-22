@@ -50,3 +50,29 @@ You can find code samples, working examples, and more at the
 [GWT-Wizard's home on the web][2].
 
   [2]: http://gwt-wizard.binarymuse.net/ "GWT-Wizard Home Page"
+
+Generating the Documentation
+----------------------------
+
+You can generate a copy of the project's site
+([http://gwt-wizard.binarymuse.net][2]) by doing the following:
+
+  1. Install [nanoc][3]
+  2. `cd pages-source` from the repo root
+  3. `./compile`
+
+If the project's JavaDoc output is located in `../doc` (in a folder called
+`doc` from the repo root), the compile script will copy the JavaDoc as it
+compiles the site. The output will be placed in `pages-source/output`.
+
+  [3]: http://nanoc.stoneship.org/ "nanoc"
+
+What's Missing
+--------------
+
+There are a few things missing from the current iteration of GWT-Wizard:
+
+  * Removing pages: once a page has been added to a wizard, it can't
+    be removed
+  * Unit Tests: there are currently no unit tests checked in for the project
+  * Build scripts: there are currently no build scripts for the project

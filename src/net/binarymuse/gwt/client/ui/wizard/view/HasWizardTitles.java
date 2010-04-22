@@ -12,19 +12,17 @@ import net.binarymuse.gwt.client.ui.wizard.WizardPage;
  *
  */
 public interface HasWizardTitles {
+
     /**
      * Adds a page title.
      * @param title the title of the page to add
      */
     public void addPage(String title);
+
     /**
      * Sets a page title as the currently active title.
      * @param title the title to set as active
      */
     public void setCurrentPage(String title);
-    /**
-     * Removes a page title.
-     * @param title the title of the page to remove
-     */
-    public void removePage(String title);
+
 }

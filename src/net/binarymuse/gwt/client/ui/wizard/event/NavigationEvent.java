@@ -81,27 +81,50 @@ public class NavigationEvent {
         this.destinationPage = destinationPage;
     }
 
-    // TODO: finish javadoc for NavigationEvent
+    /**
+     * Gets whether or not to call the {@link WizardPage#beforeNext(NavigationEvent)} hook.
+     * @return <code>true</code> if the hook should be called, <code>false</code> otherwise
+     */
     public boolean getFireBeforeNext() {
         return fireBeforeNext;
     }
 
+    /**
+     * Sets whether or not to call the {@link WizardPage#afterNext()} hook.
+     * @param fireBeforeNext <code>true</code> if the hook should be called, <code>false</code> otherwise
+     */
     public void setFireBeforeNext(boolean fireBeforeNext) {
         this.fireBeforeNext = fireBeforeNext;
     }
 
+    /**
+     * Gets whether or not to call the {@link WizardPage#beforeNext(NavigationEvent)} hook.
+     * @return <code>true</code> if the hook should be called, <code>false</code> otherwise
+     */
     public boolean getFireAfterNext() {
         return fireAfterNext;
     }
 
+    /**
+     * Sets whether or not to call the {@link WizardPage#afterNext()} hook.
+     * @param fireAfterNext <code>true</code> if the hook should be called, <code>false</code> otherwise
+     */
     public void setFireAfterNext(boolean fireAfterNext) {
         this.fireAfterNext = fireAfterNext;
     }
 
+    /**
+     * Gets whether or not to call the {@link WizardPage#beforeShow()} hook.
+     * @return <code>true</code> if the hook should be called, <code>false</code> otherwise
+     */
     public boolean getFireBeforeShow() {
         return fireBeforeShow;
     }
 
+    /**
+     * Sets whether or not to call the {@link WizardPage#beforeShow()} hook.
+     * @param fireBeforeShow <code>true</code> if the hook should be called, <code>false</code> otherwise
+     */
     public void setFireBeforeShow(boolean fireBeforeShow) {
         this.fireBeforeShow = fireBeforeShow;
     }

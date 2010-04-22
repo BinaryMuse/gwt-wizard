@@ -19,6 +19,8 @@ public abstract class WizardPage<C extends WizardContext> {
      * PageID is a class used to identify a page.
      * Implementations of {@link WizardPage} should
      * return it in {@link WizardPage#getPageID()}.
+     * Pages with the same PageID should refer to the
+     * same WizardPage instance.
      * @author Brandon Tilley
      *
      */

@@ -1,12 +1,9 @@
 package net.binarymuse.gwt.client.ui.wizard;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import net.binarymuse.gwt.client.ui.wizard.WizardPage.PageID;
 import net.binarymuse.gwt.client.ui.wizard.event.NavigationEvent;
@@ -103,7 +100,11 @@ public class Wizard<C extends WizardContext> extends Composite {
 
     /**
      * Defines the four types of Buttons a {@link Wizard}
-     * can contain. Used in
+     * can contain. Used in the button methods.
+     * @see Wizard#getButton(ButtonType)
+     * @see Wizard#setButtonEnabled(ButtonType, boolean)
+     * @see Wizard#setButtonVisible(ButtonType, boolean)
+     * @see Wizard#clickButton(ButtonType)
      * @author Brandon Tilley
      *
      */
@@ -115,17 +116,17 @@ public class Wizard<C extends WizardContext> extends Composite {
     }
 
     // helper objects
-    protected C context;
-    protected final WizardPageHelper<C> helper;
-    protected final WizardHandlers<Wizard<C>> handlers;
-    protected boolean buttonOverride = false;
+    protected final WizardPageHelper<C> helper; // protected because there is no getter
+    private C context;
+    private final HandlerFactory<Wizard<C>> handlers;
+    private boolean buttonOverride = false;
 
     // data objects
-    protected List<WizardPage<C>> pages;
-    protected Map<WizardPage<C>,WizardPage<C>> pageLinks;
-    protected int pageNum = -1;
-    protected List<Integer> shownPages;
-    protected boolean useLazyPageLoading;
+    private List<WizardPage<C>> pages;
+    private final WizardPageLinkManager pageLinkManager;
+    private int pageNum = -1;
+    private List<Integer> shownPages;
+    private boolean useLazyPageLoading;
 
     // ui objects
     protected Display display;
@@ -153,7 +154,7 @@ public class Wizard<C extends WizardContext> extends Composite {
         handlers = new HandlerFactory<Wizard<C>>(this);
 
         pages = new LinkedList<WizardPage<C>>();
-        pageLinks = new HashMap<WizardPage<C>,WizardPage<C>>();
+        pageLinkManager = new WizardPageLinkManager();
         shownPages = new ArrayList<Integer>();
         useLazyPageLoading = false;
 
@@ -186,6 +187,7 @@ public class Wizard<C extends WizardContext> extends Composite {
     /**
      * Returns the Wizard page being displayed.
      * @return the page being displayed, or <code>null</code> if none
+     * @see #getCurrentPageID()
      */
     public WizardPage<C> getCurrentPage() {
         return (pageNum != -1) ? pages.get(pageNum) : null;
@@ -195,6 +197,7 @@ public class Wizard<C extends WizardContext> extends Composite {
      * Convenience method to get the {@link PageID} of the
      * current {@link WizardPage}.
      * @return the {@link PageID} of the current {@link WizardPage}, or <code>null</code> if none
+     * @see #getCurrentPage()
      */
     public WizardPage.PageID getCurrentPageID() {
         WizardPage<C> currentPage = getCurrentPage();
@@ -314,7 +317,7 @@ public class Wizard<C extends WizardContext> extends Composite {
 
         // Set the values of our buttons based on
         // the current page position
-        calculateButtonStates();
+        adjustButtonStates();
     }
 
     /**
@@ -347,14 +350,17 @@ public class Wizard<C extends WizardContext> extends Composite {
      * @return the {@link PageID} of the next page, or <code>null</code> if none.
      */
     public WizardPage.PageID getNextPageID() {
-        WizardPage<C> page = getCurrentPage();
-        if(pageLinks.containsKey(page)) {
-           return pageLinks.get(page).getPageID();
-        } else if(pageNum == pages.size() - 1) {
-            // return null if this is the last page
-            return null;
+        PageID nextPage = getLinkManager().getForwardLinkDestination(getCurrentPageID());
+        if(nextPage == null) {
+            if(pageNum == pages.size() - 1 || pageNum == -1) {
+                // return null if this is the last page
+                // or the current page is not defined
+                return null;
+            } else {
+                return pages.get(pageNum + 1).getPageID();
+            }
         } else {
-            return pages.get(pageNum + 1).getPageID();
+            return nextPage;
         }
     }
 
@@ -363,24 +369,18 @@ public class Wizard<C extends WizardContext> extends Composite {
      * @return the {@link PageID} of the previous page, or <code>null</code> if none.
      */
     public WizardPage.PageID getPreviousPageID() {
-        WizardPage<C> page = getCurrentPage();
-        if(pageLinks.containsValue(page)) {
-            Iterator<Entry<WizardPage<C>, WizardPage<C>>> iter = pageLinks.entrySet().iterator();
-            while(iter.hasNext()) {
-                Entry<WizardPage<C>, WizardPage<C>> entry = iter.next();
-                if(entry.getValue() == page) {
-                    return entry.getKey().getPageID();
-                }
+        PageID lastPage = getLinkManager().getReverseLinkDestination(getCurrentPageID());
+        if(lastPage == null) {
+            if(pageNum == 0 || pageNum == -1) {
+                // return null if this is the last page
+                // or the current page is not defined
+                return null;
+            } else {
+                return pages.get(pageNum - 1).getPageID();
             }
-        } else if(pageNum == -1 || pageNum == 0) {
-            // return null if this is the first page,
-            // or if the current page is not defined
-            return null;
         } else {
-            return pages.get(pageNum - 1).getPageID();
+            return lastPage;
         }
-
-        return null; // should never get this, but to make the compiler happy
     }
 
     /**
@@ -390,8 +390,14 @@ public class Wizard<C extends WizardContext> extends Composite {
      * the current page. The user can request that this
      * functionality be disabled for the <em>next page change</em>
      * by passing true to {@link #setButtonOverride(boolean)}.
+     * <p>
+     * Adding or removing page links via the Wizard's
+     * {@link WizardPageLinkManager} will not immediately
+     * cause the button states to readjust; if the buttons
+     * need to be readjusted immediately, you must call
+     * the method manually.
      */
-    protected void calculateButtonStates() {
+    public void adjustButtonStates() {
         // if the user has requested that they be allowed
         // to override button states this transition, return,
         // but take control back next time.
@@ -400,16 +406,16 @@ public class Wizard<C extends WizardContext> extends Composite {
             return;
         }
 
-        if(pages.size() == pageNum + 1) {
-            display.getButtonBar().getNextButton().setEnabled(false);
-        } else {
-            display.getButtonBar().getNextButton().setEnabled(true);
-        }
-
-        if(pageNum == 0) {
+        if(getPreviousPageID() == null) {
             display.getButtonBar().getPreviousButton().setEnabled(false);
         } else {
             display.getButtonBar().getPreviousButton().setEnabled(true);
+        }
+
+        if(getNextPageID() == null) {
+            display.getButtonBar().getNextButton().setEnabled(false);
+        } else {
+            display.getButtonBar().getNextButton().setEnabled(true);
         }
     }
 
@@ -433,66 +439,13 @@ public class Wizard<C extends WizardContext> extends Composite {
 
     // === Page Links ====================
 
-    // TODO: Refactor the page link mechanism to be more flexible
-    protected void createPageLink(WizardPage<C> page, WizardPage<C> otherPage) {
-        destroyPageLinksToPage(otherPage);
-        pageLinks.put(page, otherPage);
-    }
-
     /**
-     * Create a two-way next/previous link between two pages by
-     * specifying their {@link PageID}s. You must pass the earlier (first)
-     * page as the first parameter, and the later (second) page as the
-     * second parameter.
-     * @param pageId the {@link PageID} of the page to create a link from
-     * @param otherPageId the {@link PageID} of the page to create a link to
+     * Returns the Wizard's {@link WizardPageLinkManager}, which
+     * manages custom links between pages of the Wizard.
+     * @return the Wizard's WizardPageLinkManager
      */
-    public void createPageLink(WizardPage.PageID pageId, WizardPage.PageID otherPageId)
-    {
-        createPageLink(getPageByPageID(pageId), getPageByPageID(otherPageId));
-    }
-
-    protected void destroyPageLink(WizardPage<C> page) {
-        if(pageLinks.containsKey(page))
-            pageLinks.remove(page);
-    }
-
-    /**
-     * Destroy the link from the specified page. Does not destroy reverse links.
-     * @param pageId the {@link PageID} of the page to destroy links from
-     * @see #destroyPageLinksToPage(WizardPage.PageID)
-     */
-    public void destroyPageLink(WizardPage.PageID pageId)
-    {
-        destroyPageLink(getPageByPageID(pageId));
-    }
-
-    protected void destroyPageLinksToPage(WizardPage<C> page) {
-        if(!pageLinks.containsValue(page))
-            return;
-
-        WizardPage<C> pageToRemove = null;
-        Iterator<Entry<WizardPage<C>, WizardPage<C>>> iter = pageLinks.entrySet().iterator();
-        while(iter.hasNext()) {
-            Entry<WizardPage<C>, WizardPage<C>> entry = iter.next();
-            if(entry.getValue() == page) {
-                pageToRemove = entry.getKey();
-                break;
-            }
-        }
-
-        if(pageToRemove != null)
-            pageLinks.remove(pageToRemove);
-    }
-
-    /**
-     * Destroy reverse links from the specified page. Does not destroy forward links.
-     * Called by {@link #createPageLink(WizardPage.PageID, WizardPage.PageID)}.
-     * @param pageId the {@link PageID} of the page to destroy reverse links from
-     * @see #destroyPageLink(WizardPage.PageID)
-     */
-    public void destroyPageLinksToPage(WizardPage.PageID pageId) {
-        destroyPageLinksToPage(getPageByPageID(pageId));
+    public WizardPageLinkManager getLinkManager() {
+        return pageLinkManager;
     }
 
     // === WizardContext ====================
@@ -517,6 +470,10 @@ public class Wizard<C extends WizardContext> extends Composite {
 
     // === HandlerFactory ====================
 
+    /**
+     * Returns the Wizard's {@link HandlerFactory}, which provides
+     * common event handlers for user created Wizards and {@link WizardPage}s.
+     */
     public HandlerFactory<Wizard<C>> getHandlerFactory() {
         return handlers;
     }
@@ -557,7 +514,7 @@ public class Wizard<C extends WizardContext> extends Composite {
             showPage(0);
         }
 
-        calculateButtonStates();
+        adjustButtonStates();
     }
 
     /**

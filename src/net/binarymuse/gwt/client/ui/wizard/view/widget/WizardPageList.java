@@ -69,10 +69,4 @@ public class WizardPageList extends Composite implements HasWizardTitles {
         }
     }
 
-    @Override
-    public void removePage(String name) {
-        // TODO Auto-generated method stub
-
-    }
-
 }
