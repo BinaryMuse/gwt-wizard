@@ -76,3 +76,8 @@ There are a few things missing from the current iteration of GWT-Wizard:
     be removed
   * Unit Tests: there are currently no unit tests checked in for the project
   * Build scripts: there are currently no build scripts for the project
+
+License
+-------
+
+GWT-Wizard is licensed under the MIT License. See the LICENSE file for details.
