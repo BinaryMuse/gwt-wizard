@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 
 import net.binarymuse.gwt.client.ui.wizard.WizardPage.PageID;
 import net.binarymuse.gwt.client.ui.wizard.event.NavigationEvent;
-import net.binarymuse.gwt.client.ui.wizard.event.handler.WizardHandlers;
+import net.binarymuse.gwt.client.ui.wizard.event.handler.HandlerFactory;
 import net.binarymuse.gwt.client.ui.wizard.exception.DuplicatePageException;
 import net.binarymuse.gwt.client.ui.wizard.view.HasIndexedWidgets;
 import net.binarymuse.gwt.client.ui.wizard.view.HasWizardButtonMethods;
@@ -150,7 +150,7 @@ public class Wizard<C extends WizardContext> extends Composite {
     public Wizard(String caption, C context, Display view) {
         this.context = context;
         helper = new WizardPageHelper<C>(this);
-        handlers = new WizardHandlers<Wizard<C>>(this);
+        handlers = new HandlerFactory<Wizard<C>>(this);
 
         pages = new LinkedList<WizardPage<C>>();
         pageLinks = new HashMap<WizardPage<C>,WizardPage<C>>();
@@ -515,9 +515,9 @@ public class Wizard<C extends WizardContext> extends Composite {
         return context;
     }
 
-    // === WizardHandlers ====================
+    // === HandlerFactory ====================
 
-    public WizardHandlers<Wizard<C>> getHandlerFactory() {
+    public HandlerFactory<Wizard<C>> getHandlerFactory() {
         return handlers;
     }
 
