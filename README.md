@@ -57,6 +57,12 @@ Project Status
 GWT-Wizard should be considered alpha software. The API is highly malleable
 and may change from commit to commit.
 
+Building GWT-Wizard from Source
+-------------------------------
+
+You can compile GWT-Wizard by running `ant build` from the repo root. You
+can create a JAR file to use by running `and jar` from the same location.
+
 Generating the Documentation
 ----------------------------
 
@@ -83,7 +89,6 @@ There are a few things missing from the current iteration of GWT-Wizard:
   * DOM dependence: there is some DOM/GWT dependence in classes that should
     be a presenter (in the MVP sense)
   * Unit Tests: there are currently no unit tests checked in for the project
-  * Build scripts: there are currently no build scripts for the project
 
 License
 -------
