@@ -77,8 +77,9 @@ Ant installed:
     `.class` files to the `bin` directory
   * `ant jar` (depends on `build`): create a JAR based on the contents of the
     `bin` directory
+  * `and doc`: builds the project's JavaDoc into the `doc` directory
   * `ant clean`: deletes the `bin` directory (but not the generated
-    `gwt-wizard.jar` file)
+    `gwt-wizard.jar` file or the `doc` directory)
 
 Generating the Documentation
 ----------------------------
@@ -91,8 +92,9 @@ You can generate a copy of the project's site
   3. `./compile`
 
 If the project's JavaDoc output is located in `../doc` (in a folder called
-`doc` from the repo root), the compile script will copy the JavaDoc as it
-compiles the site. The output will be placed in `pages-source/output`.
+`doc` from the repo root, created by the `ant doc` command), the compile
+script will copy the JavaDoc as it compiles the site. The output will be
+placed in `pages-source/output`.
 
   [3]: http://nanoc.stoneship.org/ "nanoc"
 

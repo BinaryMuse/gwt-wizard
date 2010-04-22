@@ -23,6 +23,20 @@
         <jar destfile="gwt-wizard.jar" basedir="bin" compress="true" />
     </target>
 
+    <target name="doc" description="Create JavaDoc">
+        <javadoc access="protected" author="true" classpathref="project.class.path"
+          destdir="doc" doctitle="GWT-Wizard Documentation"
+          nodeprecated="false" nodeprecatedlist="false"
+          noindex="false" nonavbar="false" notree="false"
+          overview="src/overview.html"
+          packagenames="net.binarymuse.gwt.*"
+          source="1.6"
+          sourcepath="src" splitindex="true" use="true" version="true">
+            <link href="http://google-web-toolkit.googlecode.com/svn/javadoc/2.0/"/>
+            <link href="http://java.sun.com/javase/6/docs/api/"/>
+        </javadoc>
+    </target>
+
     <target name="clean" description="Cleans the project">
         <delete dir="bin" failonerror="false" />
     </target>
