@@ -61,7 +61,12 @@ Building GWT-Wizard from Source
 -------------------------------
 
 You can compile GWT-Wizard by running `ant build` from the repo root. You
-can create a JAR file to use by running `and jar` from the same location.
+can create a JAR file (`gwt-wizard.jar`) by running `ant jar` from the same
+location. You must specify the location of the GWT JARs in an environment
+variable called `GWTPATH`, or else update `build.xml` to change all instances
+of `"${env.GWTPATH}"` to the location of the JARs.
+
+`ant clean` will delete the `bin` directory, but not `gwt-wizard.jar`.
 
 Generating the Documentation
 ----------------------------
