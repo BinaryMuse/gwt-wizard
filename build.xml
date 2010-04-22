@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<project name="gwt-wizard" default="build" basedir=".">
-    <!-- Arguments to gwtc and devmode targets -->
+<project name="gwt-wizard" default="jar" basedir=".">
     <property environment="env" /> <!-- used for getting GWT path -->
 
     <path id="project.class.path">
-        <pathelement location="${env.GWTPATH}/gwt-user.jar"/>
-        <fileset dir="${env.GWTPATH}" includes="gwt-dev*.jar"/>
+        <pathelement location="${env.GWTPATH}/gwt-user.jar" />
     </path>
 
     <target name="build" description="Compile source">
-        <mkdir dir="bin"/>
+        <mkdir dir="bin" />
         <javac srcdir="src" includes="**" encoding="utf-8"
           destdir="bin"
           source="1.6" target="1.6" nowarn="false"
           debug="true" debuglevel="lines,vars,source">
-            <classpath refid="project.class.path"/>
+            <classpath refid="project.class.path" />
         </javac>
         <copy todir="bin">
             <fileset dir="src" />
