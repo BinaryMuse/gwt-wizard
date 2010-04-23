@@ -21,6 +21,16 @@ import com.google.gwt.user.client.ui.Widget;
 
 /**
  * The default implementation of {@link Display}.
+ * <p>
+ * WizardView provides some CSS selectors to assist in
+ * styling it:
+ * <ul>
+ * <li><code>.hasBorder</code> is applied to every element that has a border</li>
+ * <li><code>.wizardTitle</code> is applied to the panel that contains the caption</li>
+ * <li><code>.wizardPages</code> is applied to the panel that contains the list of page titles</li>
+ * <li><code>.wizardNagivation</code> is applied to the panel that contains the naviation buttons</li>
+ * <li><code>.wizardContent</code> is applied to the panel that contains the main wizard content</li>
+ * </ul>
  * @author Brandon Tilley
  *
  */
@@ -42,7 +52,6 @@ public class WizardView extends Composite implements Display {
     {
         // outer panel
         this.outerPanel = new DockLayoutPanel(Unit.PX);
-        this.outerPanel.addStyleDependentName("wizardOuterPanel");
         initWidget(this.outerPanel);
 
         // title panel and contained html
