@@ -38,7 +38,7 @@
     </target>
 
     <target name="site" description="Compile nanoc site">
-        <exec executable="./compile" dir="pages-source" />
+        <exec executable="./compile.sh" dir="pages-source" />
     </target>
 
     <target name="clean" description="Cleans the project">

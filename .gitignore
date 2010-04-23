@@ -2,6 +2,7 @@
 .project
 .settings/*
 gwt-wizard.jar
+pages-source/push.sh
 pages-source/output/*
 pages-source/tmp/*
 pages-source/static/javadoc/*
