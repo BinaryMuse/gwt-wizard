@@ -16,15 +16,15 @@ import com.google.gwt.event.dom.client.KeyPressHandler;
  * @param <W> the {@link Wizard} type
  * (<code>W extends Wizard<?></code> matches any valid {@link Wizard})
  */
-public class HandlerFactory<W extends Wizard<?>> {
+public class HandlerFactory<D extends Wizard.Display> {
 
-    private W wizard;
+    private D display;
 
     private final KeyPressHandler enterKeyNextHandler = new KeyPressHandler() {
         @Override
         public void onKeyPress(KeyPressEvent event) {
             if(event.getCharCode() == KeyCodes.KEY_ENTER)
-                wizard.clickButton(ButtonType.BUTTON_NEXT);
+                display.getButtonBar().getNextButton().click();
         }
     };
 
@@ -33,8 +33,8 @@ public class HandlerFactory<W extends Wizard<?>> {
      * {@link Wizard}.
      * @param wizard the parent {@link Wizard}
      */
-    public HandlerFactory(W wizard) {
-        this.wizard = wizard;
+    public HandlerFactory(D display) {
+        this.display = display;
     }
 
     /**

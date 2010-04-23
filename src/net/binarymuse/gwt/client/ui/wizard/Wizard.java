@@ -80,6 +80,12 @@ public class Wizard<C extends WizardContext> extends Composite {
          */
         HasIndexedWidgets getContent();
         /**
+         * Returns the Display's {@link HandlerFactory}, which provides
+         * common event handlers for user created {@link Wizard}s and {@link WizardPage}s.
+         * @return the {@link HandlerFactory} for this display
+         */
+        HandlerFactory<Display> getHandlerFactory();
+        /**
          * Indicate to the view that work is being done. The
          * default view shows an animated "working" icon.
          */
@@ -118,7 +124,6 @@ public class Wizard<C extends WizardContext> extends Composite {
     // helper objects
     protected final WizardPageHelper<C> helper; // protected because there is no getter
     private C context;
-    private final HandlerFactory<Wizard<C>> handlers;
     private boolean buttonOverride = false;
 
     // data objects
@@ -151,7 +156,6 @@ public class Wizard<C extends WizardContext> extends Composite {
     public Wizard(String caption, C context, Display view) {
         this.context = context;
         helper = new WizardPageHelper<C>(this);
-        handlers = new HandlerFactory<Wizard<C>>(this);
 
         pages = new LinkedList<WizardPage<C>>();
         pageLinkManager = new WizardPageLinkManager();
@@ -186,6 +190,14 @@ public class Wizard<C extends WizardContext> extends Composite {
                 showPreviousPage();
             }
         });
+    }
+
+    /**
+     * Gets the Wizard's view as a {@link Display}.
+     * @return the Wizard's view
+     */
+    public Display getView() {
+        return display;
     }
 
     /**
@@ -470,16 +482,6 @@ public class Wizard<C extends WizardContext> extends Composite {
      */
     public C getContext() {
         return context;
-    }
-
-    // === HandlerFactory ====================
-
-    /**
-     * Returns the Wizard's {@link HandlerFactory}, which provides
-     * common event handlers for user created Wizards and {@link WizardPage}s.
-     */
-    public HandlerFactory<Wizard<C>> getHandlerFactory() {
-        return handlers;
     }
 
     // === WizardPages ====================

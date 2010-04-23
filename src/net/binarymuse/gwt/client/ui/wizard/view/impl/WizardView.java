@@ -1,6 +1,8 @@
 package net.binarymuse.gwt.client.ui.wizard.view.impl;
 
+import net.binarymuse.gwt.client.ui.wizard.Wizard;
 import net.binarymuse.gwt.client.ui.wizard.Wizard.Display;
+import net.binarymuse.gwt.client.ui.wizard.event.handler.HandlerFactory;
 import net.binarymuse.gwt.client.ui.wizard.view.HasIndexedWidgets;
 import net.binarymuse.gwt.client.ui.wizard.view.HasWizardButtons;
 import net.binarymuse.gwt.client.ui.wizard.view.HasWizardTitles;
@@ -46,10 +48,15 @@ public class WizardView extends Composite implements Display {
     private final WizardDeckPanel pagePanel;
     private final WizardNavigationPanel navigationPanel;
 
+    private final HandlerFactory<Display> handlers;
+
     private static final WizardViewImages images = GWT.create(WizardViewImages.class);
 
     public WizardView()
     {
+        // Handlers
+        handlers = new HandlerFactory(this);
+
         // outer panel
         this.outerPanel = new DockLayoutPanel(Unit.PX);
         initWidget(this.outerPanel);
@@ -134,6 +141,11 @@ public class WizardView extends Composite implements Display {
     @Override
     public void stopProcessing() {
         workingIndicatorImage.setVisible(false);
+    }
+
+    @Override
+    public HandlerFactory<Display> getHandlerFactory() {
+        return handlers;
     }
 
 }
