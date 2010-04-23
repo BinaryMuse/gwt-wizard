@@ -29,16 +29,11 @@
 	border-bottom: 1px solid black;
 }
 
-.muse-gwt-Wizard .wizardTitle {
-	/*border-bottom: 1px solid black;*/
-}
-
 .muse-gwt-Wizard .wizardTitle .gwt-HTML {
 	float: left;
 }
 
 .muse-gwt-Wizard .wizardPages {
-	/*border-right: 1px solid black;*/
 	padding: 5px;
 }
 
@@ -46,14 +41,8 @@
 	color: #888888;
 }
 
-.muse-gwt-Wizard .wizardNavigation {
-	/*border-top: 1px solid black;*/
-	/*border-left: 1px solid black;*/
-}
-
 .muse-gwt-Wizard .wizardContent {
 	padding: 5px;
-	/*border-left: 1px solid black;*/
 }
 
 .muse-gwt-Wizard .wizardTitle .gwt-HTML {
