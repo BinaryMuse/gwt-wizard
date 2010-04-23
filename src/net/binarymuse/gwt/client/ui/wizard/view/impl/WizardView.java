@@ -1,6 +1,5 @@
 package net.binarymuse.gwt.client.ui.wizard.view.impl;
 
-import net.binarymuse.gwt.client.ui.wizard.Wizard;
 import net.binarymuse.gwt.client.ui.wizard.Wizard.Display;
 import net.binarymuse.gwt.client.ui.wizard.event.handler.HandlerFactory;
 import net.binarymuse.gwt.client.ui.wizard.view.HasIndexedWidgets;
@@ -55,7 +54,7 @@ public class WizardView extends Composite implements Display {
     public WizardView()
     {
         // Handlers
-        handlers = new HandlerFactory(this);
+        handlers = new HandlerFactory<Display>(this);
 
         // outer panel
         this.outerPanel = new DockLayoutPanel(Unit.PX);

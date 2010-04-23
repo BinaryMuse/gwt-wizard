@@ -2,7 +2,6 @@ package net.binarymuse.gwt.client.ui.wizard.event.handler;
 
 import net.binarymuse.gwt.client.ui.wizard.Wizard;
 import net.binarymuse.gwt.client.ui.wizard.WizardPage;
-import net.binarymuse.gwt.client.ui.wizard.Wizard.ButtonType;
 
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyPressEvent;
