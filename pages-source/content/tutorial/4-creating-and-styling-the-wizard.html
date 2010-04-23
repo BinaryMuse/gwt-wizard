@@ -1,0 +1,62 @@
+---
+title: "Tutorial: 4 - Creating and Styling the Wizard"
+permalink: /tutorial/4-creating-and-styling-the-wizard.html
+---
+Let's create a @Wizard@ object and add our page to it to see what it looks like. Change your @EntryPoint@ method in *GWTWizardSample.java* to the following:
+
+<pre><code class="CodeRay language-java">@Override
+public void onModuleLoad() {
+    Wizard<SignupWizardContext> wizard =
+        new Wizard<SignupWizardContext>("Wizard", new SignupWizardContext());
+    wizard.setSize("500px", "350px");
+    wizard.addPage(new WelcomePage());
+    RootPanel.get().add(wizard);
+}</code></pre>
+
+You should be able to run your project in development mode and get the following:
+
+!/images/tutorial/first-page.png(Our first WizardPage)!
+
+Not bad, but there are a couple things we could change. We don't want the user to be able to cancel this particular wizard, so we'll remove the "Cancel" button. We'll also disable the "Finish" button until the user can use it. Also, the spacing between the top of the content area and the heading is too much--we should get rid of that. Furthermore, the wizard lacks a certain creative flair; let's change the color of the borders.
+
+<h2>Modifying the Wizard's Buttons</h2>
+
+GWT-Wizard provides a few methods that allow you to modify the buttons in the wizard's view, including setting the enabled state, visibility, and even adding <code>ClickHandler</code>s. Let's add the following lines of code to our @EntryPoint@ method, just after our call to @addPage()@:
+
+<pre><code class="CodeRay language-java">wizard.setButtonVisible(ButtonType.BUTTON_CANCEL, false);
+wizard.setButtonEnabled(ButtonType.BUTTON_FINISH, false);</code></pre>
+
+Refreshing the development mode browser should show that the "Cancel" button has been hidden and the "Finish" button disabled.
+
+Also notice that the "Previous" and "Next" buttons are disabled. This is because the wizard has detected that there are no pages before or after the current page in the wizard. We can override this behavior, which we will do later in the tutorial.
+
+<h2>Styling the Wizard with CSS</h2>
+
+The default view (@WizardView@) provides several CSS selectors that help us pick and choose what to modify (see the JavaDoc for specifics). Open your *war/GWTWizardSample.css* file and toss in the following CSS:
+
+<pre><code class="CodeRay language-css">.muse-gwt-Wizard .wizardContent h1 {
+    margin-top: 0px;
+}
+
+.muse-gwt-Wizard, .muse-gwt-Wizard .hasBorder {
+    border-color: blue;
+}</code></pre>
+
+The main content area of the wizard has the class @wizardContent@; we modify every first-level heading inside it to get rid of the top margin. Also, every internal element that has a border in the view has the class @hasBorder@ to allow us to affect all the borders at once. However, if you refresh your development mode browser, you'll notice that the borders aren't a different color.
+
+This is because of the way GWT injects CSS styles into your application. When your host page loads, the CSS file defined in the @<link>@ tag is loaded. Then, the JavaScript in your GWT application injects its own stylesheet into the application, overriding the styles provided in your CSS file.
+
+The solution is to inject your own stylesheet into the application _after_ the wizard injects its own stylesheet. There are a few steps to this process.
+
+First, create a new folder in your project hierarchy at the same level as the @client@ folder and @.gwt.xml@ file called "public" (the folder would be @src/net/binarymuse/gwt/sample/gwtwizardsample/public@). Move your CSS file from the *war* directory into this folder.
+
+Remove the @<link>@ tag that references the CSS file from your host HTML page and instead add the following line near the bottom of your @.gwt.xml@ file (_after_ you inherit the @net.binarymuse.gwt.Wizard@ module):
+
+<pre><code class="CodeRay language-xml"><stylesheet src='GWTWizardSample.css' /></code></pre>
+
+This line instructs GWT to inject your stylesheet into the application instead of loading it with the host page. (When I make changes to injected CSS files, I sometimes have to refresh the development mode browser multiple times before the style takes--be warned.) You can see that now the heading is flushed with the top of the content area _and_ the borders are a nice shade of blue.
+
+!/images/tutorial/first-page-styled.png(Our first WizardPage after styles)!
+
+<div style="text-align: center;"><a href="/index.html">Home</a><br />
+&lt;&lt; <a href="/tutorial/3-the-welcome-page.html">Tutorial: 3 - The Welcome Page</a> | <a href="/tutorial/4-">Tutorial: 5 - </a> &gt;&gt;</div>
