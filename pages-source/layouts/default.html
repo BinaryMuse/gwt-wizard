@@ -4,6 +4,9 @@
     <title>GWT-Wizard: <%= @item[:title] %></title>
     <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen" />
+    <style type="text/css">
+     @import"http://binarymuse.net:8111/css/status/externalStatus.css";
+    </style>
 </head>
 <body>
     <a href="http://github.com/BinaryMuse/gwt-wizard/"><img id="fork" src="/images/forkme_black.png" alt="Fork Me on GitHub" /></a>
@@ -20,14 +23,20 @@
               <li><a href="/tutorial/4-creating-and-styling-the-wizard.html">Creating and Styling the Wizard</a>
             </ol>
         <li><a href="/docframe.html">API JavaDoc</a></li>
+        <li><a href="http://binarymuse.net:8111/viewLog.html?buildTypeId=bt2&buildId=lastSuccessful&tab=artifacts">Last Successful Build</a><br />(Login as Guest)</li>
         </ul>
         
         <p><a href="http://github.com/BinaryMuse/gwt-wizard">Home on GitHub</a></p>
+        
     </div>
     
     <div id="main">
         <h1><%= @item[:title] %></h1>
         <%= yield %>
+        
+        <hr>
+        <script type="text/javascript" src="http://binarymuse.net:8111/externalStatus.html?js=1">
+        </script>
     </div>
 </body>
 </html>
