@@ -6,8 +6,6 @@ tries to make as few assumptions as possible about your needs, making it a
 flexible and powerful tool, while still providing sane defaults that allow
 simple projects to get up and running with as little configuration as possible.
 
-  [1]: http://en.wikipedia.org/wiki/Wizard_%28software%29 "Wizard on Wikipedia"
-
 ![sample-wizard](http://binarymuse.github.com/gwt-wizard/images/sample-wizard.png)
 
 GWT-Wizard has a few nice features, including the following:
@@ -49,8 +47,6 @@ More Details and Examples
 You can find code samples, working examples, and more at the
 [GWT-Wizard's home on the web][2].
 
-  [2]: http://gwt-wizard.binarymuse.net/ "GWT-Wizard Home Page"
-
 Project Status
 --------------
 
@@ -77,63 +73,44 @@ The `build.xml` file supplies several Apache Ant build targets:
 
 ### Building GWT-Wizard
 
-**Target Command**: `ant compile`
-
-**Task**: Compile the GWT-Wizard project and copy both the uncompiled source
-files and the compiled class files to the directory `bin`.
-
-**Depends On**:
-
-  * GWT installed to `/path/to/gwt/gwt-x.y.z/`
-  * Environment variable `GWTPATH` set to the value `/path/to/gwt/gwt-x.y.z/`
-
-**Cleaning**: `ant clean`
+  * **Target Command**: `ant compile`
+  * **Task**: Compile the GWT-Wizard project and copy both the uncompiled source
+    files and the compiled class files to the directory `bin`.
+  * **Depends On**:
+    * GWT installed to `/path/to/gwt/gwt-x.y.z/`
+    * Environment variable `GWTPATH` set to the value `/path/to/gwt/gwt-x.y.z/`
+  * **Cleaning**: `ant clean`
 
 ### Creating a JAR
 
-**Target Command**: `ant jar`
-
-**Task**: Package the uncompiled source and compiled class files into a JAR
-named `gwt-wizard.jar`.
-
-**Depends On**:
-
-  * Target `compile`
-
-**Cleaning**: `ant clean-jar`
+  * **Target Command**: `ant jar`
+  * **Task**: Package the uncompiled source and compiled class files into a JAR
+    named `gwt-wizard.jar`.
+  * **Depends On**:
+    * Target `compile`
+  * **Cleaning**: `ant clean-jar`
 
 ### Creating the JavaDoc
 
-**Target Command**: `ant doc`
-
-**Task**: Create the GWT-Wizard JavaDoc in the directory `doc`.
-
-**Depends On**: *none*
-
-**Cleaning**: `ant clean-doc`
+  * **Target Command**: `ant doc`
+  * **Task**: Create the GWT-Wizard JavaDoc in the directory `doc`.
+  * **Depends On**: *none*
+  * **Cleaning**: `ant clean-doc`
 
 ### Creating the Site
 
-**Target Command**: `ant site`
-
-**Task**: Compile the GWT-Wizard site ([http://gwt-wizard.binarymuse.net][2])
-into the directory `pages-source/output`. Copies the JavaDoc if the `doc` task
-is ran first.
-
-**Depends On**:
-
-  * [nanoc][3] installed
-
-**Cleaning**: `ant clean-site`
+  * **Target Command**: `ant site`
+  * **Task**: Compile the GWT-Wizard site ([http://gwt-wizard.binarymuse.net][2])
+    into the directory `pages-source/output`. Copies the JavaDoc if the `doc`
+    task is ran first.
+  * **Depends On**:
+    * [nanoc][3] installed
+  * **Cleaning**: `ant clean-site`
 
 ### Cleaning All
 
-**Target Command**: `ant clean-all`
-
-**Task**: Run all the `clean` targets
-
-  [2]: http://gwt-wizard.binarymuse.net/ "GWT-Wizard"
-  [3]: http://nanoc.stoneship.org/ "nanoc"
+  * **Target Command**: `ant clean-all`
+  * **Task**: Run all the `clean` targets
 
 What's Missing
 --------------
@@ -150,3 +127,7 @@ License
 -------
 
 GWT-Wizard is licensed under the MIT License. See the LICENSE file for details.
+
+  [1]: http://en.wikipedia.org/wiki/Wizard_%28software%29 "Wizard on Wikipedia"
+  [2]: http://gwt-wizard.binarymuse.net/ "GWT-Wizard Home Page"
+  [3]: http://nanoc.stoneship.org/ "nanoc"
