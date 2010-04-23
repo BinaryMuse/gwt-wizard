@@ -30,16 +30,17 @@ Getting Started
 
 Getting started with GWT-Wizard is easy:
 
-  1. Put `gwt-wizard.jar` on your project's build path
-  2. Inherit the wizard module with `<inherits name='net.binarymuse.gwt.Wizard' />`
-  2. Extend `WizardContext` to define your context object
-  3. Create one or more page for your wizard (a single-page wizard seems kinda
+  1. Build the project (see below) or download a JAR from the project's [home page][2].
+  2. Put `gwt-wizard.jar` on your project's build path
+  3. Inherit the wizard module with `<inherits name='net.binarymuse.gwt.Wizard' />`
+  4. Extend `WizardContext` to define your context object
+  5. Create one or more page for your wizard (a single-page wizard seems kinda
      silly) by extending `WizardPage` (the only methods you **must** provide
      are `getTitle()`, `getPageID()`, and `asWidget()`)
-  4. Create a new wizard with `new Wizard("Wizard Title", contextObject)` (you
+  6. Create a new wizard with `new Wizard("Wizard Title", contextObject)` (you
      can also pass a custom view if you so wish)
-  5. Call `wizard.addPage()` for each of the pages you wish to add to your wizard
-  6. Attach the wizard to the DOM
+  7. Call `wizard.addPage()` for each of the pages you wish to add to your wizard
+  8. Attach the wizard to the DOM
 
 More Details and Examples
 -------------------------
