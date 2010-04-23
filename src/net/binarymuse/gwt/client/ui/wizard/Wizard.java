@@ -165,7 +165,11 @@ public class Wizard<C extends WizardContext> extends Composite {
         initUi();
     }
 
-    private void initUi() {
+    /**
+     * Initializes the UI by calling <code>initWidget</code>
+     * on the view and does universal UI setup.
+     */
+    protected void initUi() {
         // wrap the display in the composite
         initWidget(display.asWidget());
         this.setStylePrimaryName("muse-gwt-Wizard");
