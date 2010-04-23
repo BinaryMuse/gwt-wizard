@@ -104,7 +104,10 @@ The `build.xml` file supplies several Apache Ant build targets:
     into the directory `pages-source/output`. Copies the JavaDoc if the `doc`
     task is ran first.
   * **Depends On**:
-    * [nanoc][3] installed
+    * [Ruby][3] installed
+    * [nanoc][4] installed (`gem install nanoc`)
+    * [RedCloth][5] installed (`gem install RedCloth`)
+    * [coderay][6] installed (`gem install coderay`)
   * **Cleaning**: `ant clean-site`
 
 ### Cleaning All
@@ -130,4 +133,7 @@ GWT-Wizard is licensed under the MIT License. See the LICENSE file for details.
 
   [1]: http://en.wikipedia.org/wiki/Wizard_%28software%29 "Wizard on Wikipedia"
   [2]: http://gwt-wizard.binarymuse.net/ "GWT-Wizard Home Page"
-  [3]: http://nanoc.stoneship.org/ "nanoc"
+  [3]: http://www.ruby-lang.org/en/ "Ruby"
+  [4]: http://nanoc.stoneship.org/ "nanoc"
+  [5]: http://redcloth.org/ "RedCloth"
+  [6]: http://coderay.rubychan.de/ "coderay"
