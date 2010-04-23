@@ -6,7 +6,7 @@
         <pathelement location="${env.GWTPATH}/gwt-user.jar" />
     </path>
 
-    <target name="build" description="Compile source">
+    <target name="compile" description="Compile source">
         <mkdir dir="bin" />
         <javac srcdir="src" includes="**" encoding="utf-8"
           destdir="bin"
@@ -19,7 +19,7 @@
         </copy>
     </target>
 
-    <target name="jar" description="Package into JAR" depends="build">
+    <target name="jar" description="Package into JAR" depends="compile">
         <jar destfile="gwt-wizard.jar" basedir="bin" compress="true" />
     </target>
 
@@ -37,7 +37,27 @@
         </javadoc>
     </target>
 
+    <target name="site" description="Compile nanoc site">
+        <exec executable="./compile" dir="pages-source" />
+    </target>
+
     <target name="clean" description="Cleans the project">
         <delete dir="bin" failonerror="false" />
     </target>
+
+    <target name="clean-jar" description="Cleans the generated JAR">
+        <delete file="gwt-wizard.jar" failonerror="false" />
+    </target>
+
+    <target name="clean-doc" description="Cleans the generated JavaDoc">
+        <delete dir="doc" />
+    </target>
+
+    <target name="clean-site" description="Cleans the compiled site">
+        <delete dir="pages-source/output" failonerror="false" />
+        <delete dir="pages-source/static/javadoc" failonerror="false" />
+    </target>
+
+    <target name="clean-all" description="Runs all clean tasks"
+        depends="clean,clean-jar,clean-doc,clean-site" />
 </project>

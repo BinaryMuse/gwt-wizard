@@ -57,8 +57,8 @@ Project Status
 GWT-Wizard should be considered alpha software. The API is highly malleable
 and may change from commit to commit.
 
-Building GWT-Wizard from Source
--------------------------------
+Build Quick-Start
+-----------------
 
 Assuming you have GWT installed to `/path/to/gwt/gwt-x.y.z/` and Apache
 Ant installed:
@@ -67,35 +67,72 @@ Ant installed:
      `git clone git://github.com/BinaryMuse/gwt-wizard.git && cd gwt-wizard`
   2. Specify the path of the GWT library:
      `export GWTPATH=/path/to/gwt/gwt-x.y.z/`
-  3. Run the Ant script to build the project (`build` to compile, `jar`
-     (the default) to build a JAR file):
-     `ant`
+  3. Run the Ant script to build the project and create a JAR:
+     `ant jar`
 
-### Build Targets
+Detailed Build Target Information
+---------------------------------
 
-  * `ant build`: compile the source and copy both the source and the compiled
-    `.class` files to the `bin` directory
-  * `ant jar` (depends on `build`): create a JAR based on the contents of the
-    `bin` directory
-  * `and doc`: builds the project's JavaDoc into the `doc` directory
-  * `ant clean`: deletes the `bin` directory (but not the generated
-    `gwt-wizard.jar` file or the `doc` directory)
+The `build.xml` file supplies several Apache Ant build targets:
 
-Generating the Documentation
-----------------------------
+### Building GWT-Wizard
 
-You can generate a copy of the project's site
-([http://gwt-wizard.binarymuse.net][2]) by doing the following:
+**Target Command**: `ant compile`
 
-  1. Install [nanoc][3]
-  2. `cd pages-source` from the repo root
-  3. `./compile`
+**Task**: Compile the GWT-Wizard project and copy both the uncompiled source
+files and the compiled class files to the directory `bin`.
 
-If the project's JavaDoc output is located in `../doc` (in a folder called
-`doc` from the repo root, created by the `ant doc` command), the compile
-script will copy the JavaDoc as it compiles the site. The output will be
-placed in `pages-source/output`.
+**Depends On**:
 
+  * GWT installed to `/path/to/gwt/gwt-x.y.z/`
+  * Environment variable `GWTPATH` set to the value `/path/to/gwt/gwt-x.y.z/`
+
+**Cleaning**: `ant clean`
+
+### Creating a JAR
+
+**Target Command**: `ant jar`
+
+**Task**: Package the uncompiled source and compiled class files into a JAR
+named `gwt-wizard.jar`.
+
+**Depends On**:
+
+  * Target `compile`
+
+**Cleaning**: `ant clean-jar`
+
+### Creating the JavaDoc
+
+**Target Command**: `ant doc`
+
+**Task**: Create the GWT-Wizard JavaDoc in the directory `doc`.
+
+**Depends On**: *none*
+
+**Cleaning**: `ant clean-doc`
+
+### Creating the Site
+
+**Target Command**: `ant site`
+
+**Task**: Compile the GWT-Wizard site ([http://gwt-wizard.binarymuse.net][2])
+into the directory `pages-source/output`. Copies the JavaDoc if the `doc` task
+is ran first.
+
+**Depends On**:
+
+  * [nanoc][3] installed
+
+**Cleaning**: `ant clean-site`
+
+### Cleaning All
+
+**Target Command**: `ant clean-all`
+
+**Task**: Run all the `clean` targets
+
+  [2]: http://gwt-wizard.binarymuse.net/ "GWT-Wizard"
   [3]: http://nanoc.stoneship.org/ "nanoc"
 
 What's Missing
