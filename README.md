@@ -107,7 +107,9 @@ The `build.xml` file supplies several Apache Ant build targets:
     * [Ruby][3] installed
     * [nanoc][4] installed (`gem install nanoc`)
     * [RedCloth][5] installed (`gem install RedCloth`)
-    * [coderay][6] installed (`gem install coderay`)
+    * [CodeRay][6] installed (`gem install coderay`)
+    * [Nokogiri][7] installed (`gem install nokogiri`)
+      (rquired `libxml2-dev` and `libxslt1-dev` on my Ubuntu box)
   * **Cleaning**: `ant clean-site`
 
 ### Cleaning All
@@ -136,4 +138,5 @@ GWT-Wizard is licensed under the MIT License. See the LICENSE file for details.
   [3]: http://www.ruby-lang.org/en/ "Ruby"
   [4]: http://nanoc.stoneship.org/ "nanoc"
   [5]: http://redcloth.org/ "RedCloth"
-  [6]: http://coderay.rubychan.de/ "coderay"
+  [6]: http://coderay.rubychan.de/ "CodeRay"
+  [7]: http://nokogiri.org/ "Nokogiri"
