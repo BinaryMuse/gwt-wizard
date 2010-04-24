@@ -12,8 +12,7 @@ import com.google.gwt.event.dom.client.KeyPressHandler;
  * for use in user-created {@link Wizard}s and {@link WizardPage}s.
  * @author Brandon Tilley
  *
- * @param <W> the {@link Wizard} type
- * (<code>W extends Wizard<?></code> matches any valid {@link Wizard})
+ * @param <D> the {@link Wizard.Display} type
  */
 public class HandlerFactory<D extends Wizard.Display> {
 
@@ -28,9 +27,8 @@ public class HandlerFactory<D extends Wizard.Display> {
     };
 
     /**
-     * Construct a new HandlerFactory, providing the parent
-     * {@link Wizard}.
-     * @param wizard the parent {@link Wizard}
+     * Construct a new HandlerFactory, providing the parent display.
+     * @param display the parent display
      */
     public HandlerFactory(D display) {
         this.display = display;
