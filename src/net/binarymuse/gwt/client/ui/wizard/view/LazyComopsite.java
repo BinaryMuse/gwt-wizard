@@ -7,7 +7,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
- * A LazyCompsite is a Composite you can use to create
+ * A LazyComopsite is a Composite you can use to create
  * the views for your {@link WizardPage}'s that supports lazy
  * loading and DOM attachment. For use with
  * {@link Wizard#setUseLazyPageLoading(boolean)}.
@@ -18,7 +18,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Brandon Tilley
  *
  */
-public abstract class LazyCompsite extends Composite implements WidgetDisplay {
+public abstract class LazyComopsite extends Composite implements WidgetDisplay {
 
     private boolean widgetCreated = false;
 

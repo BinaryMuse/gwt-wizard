@@ -13,7 +13,7 @@ import net.binarymuse.gwt.client.ui.wizard.view.HasIndexedWidgets;
 import net.binarymuse.gwt.client.ui.wizard.view.HasWizardButtonMethods;
 import net.binarymuse.gwt.client.ui.wizard.view.HasWizardButtons;
 import net.binarymuse.gwt.client.ui.wizard.view.HasWizardTitles;
-import net.binarymuse.gwt.client.ui.wizard.view.LazyCompsite;
+import net.binarymuse.gwt.client.ui.wizard.view.LazyComopsite;
 import net.binarymuse.gwt.client.ui.wizard.view.WidgetDisplay;
 import net.binarymuse.gwt.client.ui.wizard.view.impl.WizardView;
 import net.binarymuse.gwt.client.ui.wizard.view.widget.WizardDeckPanel;
@@ -562,7 +562,7 @@ public class Wizard<C extends WizardContext> extends Composite {
     /**
      * Whether or not lazy page loading and DOM attachment is enabled.
      * @return <code>true</code> if lazy loading is enabled, <code>false</code> otherwise
-     * @see LazyCompsite
+     * @see LazyComopsite
      */
     public boolean getUseLazyPageLoading() {
         return useLazyPageLoading;
@@ -571,7 +571,7 @@ public class Wizard<C extends WizardContext> extends Composite {
     /**
      * Turn lazy page loading and DOM attachment on or off.
      * @param useLazyPageLoading <code>true</code> to enable lazy loading, <code>false</code> to disable it
-     * @see LazyCompsite
+     * @see LazyComopsite
      */
     public void setUseLazyPageLoading(boolean useLazyPageLoading) {
         this.useLazyPageLoading = useLazyPageLoading;
