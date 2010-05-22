@@ -1,4 +1,11 @@
 <module>
 	<inherits name="com.google.gwt.user.User" />
+	<inherits name="com.google.gwt.i18n.I18N" />
 	<stylesheet src="wizard/Wizard.css" />
+
+	<!-- Norwegian language, independent of country -->
+	<extend-property name="locale" values="no" />
+
+	<!-- English language, independent of country -->
+	<extend-property name="locale" values="en" />
 </module>

@@ -1,10 +1,12 @@
 package net.binarymuse.gwt.client.ui.wizard.view.widget;
 
 
+import net.binarymuse.gwt.client.ui.wizard.WizardTexts;
 import net.binarymuse.gwt.client.ui.wizard.Wizard.Display;
 import net.binarymuse.gwt.client.ui.wizard.view.HasWizardButtonMethods;
 import net.binarymuse.gwt.client.ui.wizard.view.HasWizardButtons;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -19,6 +21,8 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 public class WizardNavigationPanel extends Composite implements
         HasWizardButtons {
 
+    private static final WizardTexts texts = GWT.create(WizardTexts.class);
+
     private HorizontalPanel container;
 
     private WizardButton prev;
@@ -27,11 +31,11 @@ public class WizardNavigationPanel extends Composite implements
     private WizardButton finish;
 
     public WizardNavigationPanel() {
-        this("< Prev", "Next >");
+        this(texts.previous(), texts.next());
     }
 
     public WizardNavigationPanel(String prevText, String nextText) {
-        this(prevText, nextText, "Cancel", "Finish");
+        this(prevText, nextText, texts.cancel(), texts.finish());
     }
 
     public WizardNavigationPanel(String prevText, String nextText, String cancelText, String finishText) {

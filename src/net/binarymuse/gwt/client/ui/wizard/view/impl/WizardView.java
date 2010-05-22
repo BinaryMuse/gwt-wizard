@@ -1,5 +1,6 @@
 package net.binarymuse.gwt.client.ui.wizard.view.impl;
 
+import net.binarymuse.gwt.client.ui.wizard.WizardTexts;
 import net.binarymuse.gwt.client.ui.wizard.Wizard.Display;
 import net.binarymuse.gwt.client.ui.wizard.event.handler.HandlerFactory;
 import net.binarymuse.gwt.client.ui.wizard.view.HasIndexedWidgets;
@@ -51,7 +52,11 @@ public class WizardView extends Composite implements Display {
 
     private static final WizardViewImages images = GWT.create(WizardViewImages.class);
 
-    public WizardView()
+    public WizardView() {
+    	this(new WizardNavigationPanel());
+    }
+    
+    public WizardView(WizardNavigationPanel wizardNavigationPanel)
     {
         // Handlers
         handlers = new HandlerFactory<Display>(this);
@@ -80,7 +85,7 @@ public class WizardView extends Composite implements Display {
         this.pageNamePanelContainer.add(this.pageNamePanel);
 
         // the navigation panel at the bottom
-        this.navigationPanel = new WizardNavigationPanel();
+        this.navigationPanel = wizardNavigationPanel;
         this.navigationPanel.addStyleName("wizardNavigation");
 
         // the main content panel
