@@ -1,6 +1,5 @@
 package net.binarymuse.gwt.client.ui.wizard.view.impl;
 
-import net.binarymuse.gwt.client.ui.wizard.WizardTexts;
 import net.binarymuse.gwt.client.ui.wizard.Wizard.Display;
 import net.binarymuse.gwt.client.ui.wizard.event.handler.HandlerFactory;
 import net.binarymuse.gwt.client.ui.wizard.view.HasIndexedWidgets;
