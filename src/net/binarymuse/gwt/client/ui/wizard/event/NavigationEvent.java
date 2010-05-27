@@ -18,6 +18,7 @@ public class NavigationEvent {
     private boolean fireBeforeNext;
     private boolean fireAfterNext;
     private boolean fireBeforeShow;
+    private boolean fireAfterShow;
     private WizardPage.PageID sourcePage;
     private WizardPage.PageID destinationPage;
 
@@ -34,6 +35,7 @@ public class NavigationEvent {
         setFireBeforeNext(true);
         setFireAfterNext(true);
         setFireBeforeShow(true);
+        setFireAfterShow(true);
         this.sourcePage = source;
         setDestinationPage(destination);
     }
@@ -120,6 +122,14 @@ public class NavigationEvent {
     public boolean getFireBeforeShow() {
         return fireBeforeShow;
     }
+    
+    /**
+     * Gets whether or not to call the {@link WizardPage#afterShow()} hook.
+     * @return <code>true</code> if the hook should be called, <code>false</code> otherwise
+     */
+    public boolean getFireAfterShow() {
+        return fireAfterShow;
+    }
 
     /**
      * Sets whether or not to call the {@link WizardPage#beforeShow()} hook.
@@ -127,6 +137,14 @@ public class NavigationEvent {
      */
     public void setFireBeforeShow(boolean fireBeforeShow) {
         this.fireBeforeShow = fireBeforeShow;
+    }
+
+    /**
+     * Sets whether or not to call the {@link WizardPage#afterShow()} hook.
+     * @param fireAfterShow <code>true</code> if the hook should be called, <code>false</code> otherwise
+     */
+    public void setFireAfterShow(boolean fireAfterShow) {
+        this.fireAfterShow = fireAfterShow;
     }
 
 }

@@ -55,6 +55,11 @@ public class WizardNavigationPanel extends Composite implements
         this.prev = new WizardButton(prevText);
         this.next = new WizardButton(nextText);
 
+        this.cancel.setAccessKey(texts.cancel_memonic().charAt(0));
+        this.finish.setAccessKey(texts.finish_memonic().charAt(0));
+        this.prev.setAccessKey(texts.previous_memonic().charAt(0));
+        this.next.setAccessKey(texts.next_memonic().charAt(0));
+
         this.container.add(leftSpacer);
         this.container.add(this.cancel);
         this.container.add(this.finish);

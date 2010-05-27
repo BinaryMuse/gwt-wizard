@@ -32,9 +32,28 @@ public abstract class WizardPage<C extends WizardContext> {
             index = ++nextHashCode;
         }
 
-        public final int hashCode() {
-            return index;
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + index;
+            return result;
         }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj)
+                return true;
+            if (obj == null)
+                return false;
+            if (getClass() != obj.getClass())
+                return false;
+            PageID other = (PageID) obj;
+            if (index != other.index)
+                return false;
+            return true;
+        }
+        
     }
 
     /**
@@ -101,7 +120,7 @@ public abstract class WizardPage<C extends WizardContext> {
      * Called before the first time a page is shown.
      * Allows for any setup the page may want to do.
      */
-    public void beforeFirstShow() {}
+    public void beforeFirstShow() { /* User overrides if needed */ }
 
     /**
      * Called just before each time the page is shown.
@@ -109,7 +128,13 @@ public abstract class WizardPage<C extends WizardContext> {
      * the current {@link WizardContext}. This function is
      * called before the prior page's {@link #afterNext()}.
      */
-    public void beforeShow() {}
+    public void beforeShow() { /* User overrides if needed */ }
+
+    /**
+     * Called just after each time the page is shown.
+     * This function is suitable for setting focus.
+     */
+    public void afterShow() { /* User overrides if needed */ }
 
     /**
      * Called when the "Next" button is clicked, but
@@ -117,7 +142,7 @@ public abstract class WizardPage<C extends WizardContext> {
      * page to do any validation, etc. Call
      * {@link NavigationEvent#cancel()} to cancel the page change.
      */
-    public void beforeNext(final NavigationEvent event) {}
+    public void beforeNext(final NavigationEvent event) { /* User overrides if needed */ }
 
     /**
      * Called after the page has disappeared due to the {@link Wizard}
@@ -127,6 +152,6 @@ public abstract class WizardPage<C extends WizardContext> {
      * page will need during its {@link #beforeShow()}, as
      * {@link #beforeShow()} is called before <code>afterNext()</code>.
      */
-    public void afterNext() {}
+    public void afterNext() { /* User overrides if needed */ }
 
 }

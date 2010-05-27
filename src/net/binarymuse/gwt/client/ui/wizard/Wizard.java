@@ -318,6 +318,12 @@ public class Wizard<C extends WizardContext> extends Composite {
         display.getContent().showWidget(num);
         display.getPageList().setCurrentPage(targetPage.getTitle());
 
+        // fire beforeShow
+        if(event.getFireAfterShow()) {
+            targetPage.afterShow();
+        }
+        
+        
         // fire afterNext on the last page after a delay so we don't get
         // glitches during the animation
         if(currentPage != null && event.getFireAfterNext()) {
