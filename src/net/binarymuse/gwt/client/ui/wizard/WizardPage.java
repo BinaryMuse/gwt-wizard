@@ -33,29 +33,10 @@ public abstract class WizardPage<C extends WizardContext> {
         }
 
         @Override
-        public int hashCode() {
-            final int prime = 31;
-            int result = 1;
-            result = prime * result + index;
-            return result;
+        public final int hashCode() {
+            return index;
         }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj)
-                return true;
-            if (obj == null)
-                return false;
-            if (getClass() != obj.getClass())
-                return false;
-            PageID other = (PageID) obj;
-            if (index != other.index)
-                return false;
-            return true;
-        }
-        
     }
-
     /**
      * The {@link WizardContext} for this page.
      */

@@ -264,6 +264,9 @@ public class Wizard<C extends WizardContext> extends Composite {
     protected void showPage(int num, boolean fireBeforeNext, boolean fireAfterNext,
             boolean fireBeforeShow) {
 
+//        logToFirebugConsoleLog("Show page " + num + " fireBeforeNext:" + fireBeforeNext + " fireAfterNext:" + fireAfterNext
+//                + " fireBeforeShow:" + fireBeforeShow);
+
         // First, make sure the page we want to get to even exists
         if(pages.size() <= num) {
             throw new IndexOutOfBoundsException();
@@ -691,4 +694,10 @@ public class Wizard<C extends WizardContext> extends Composite {
         else
             this.display.stopProcessing();
     }
+
+    public static native void logToFirebugConsoleLog(String string) /*-{
+    if(window['console'])
+    window['console'].log(string);
+    }-*/;
+
 }
