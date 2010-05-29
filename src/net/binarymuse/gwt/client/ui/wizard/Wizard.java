@@ -353,6 +353,13 @@ public class Wizard<C extends WizardContext> extends Composite {
     }
 
     /**
+     * Displays first page.
+     */
+    public void showFirstPage() {
+        showPage(0);
+    }
+    
+    /**
      * Show the next page, firing only specific {@link WizardPage} hooks.
      * @param fireBeforeNext whether or not to call {@link WizardPage#beforeNext(NavigationEvent)}
      * @param fireAfterNext whether or not to call {@link WizardPage#afterNext()}
