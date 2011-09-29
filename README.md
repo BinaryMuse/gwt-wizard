@@ -1,4 +1,4 @@
-GWT-Wizard: A GWT Wizard Widget for Your Project
+GWT-Wizard: A GWT Wizard Widget for Your Project ![Still Maintained](http://stillmaintained.com/BinaryMuse/gwt-wizard.png)
 ================================================
 
 GWT-Wizard is a [wizard][1] widget for use in your own GWT projects. It
