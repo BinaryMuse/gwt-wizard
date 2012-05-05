@@ -264,6 +264,9 @@ public class Wizard<C extends WizardContext> extends Composite {
     protected void showPage(int num, boolean fireBeforeNext, boolean fireAfterNext,
             boolean fireBeforeShow) {
 
+//        logToFirebugConsoleLog("Show page " + num + " fireBeforeNext:" + fireBeforeNext + " fireAfterNext:" + fireAfterNext
+//                + " fireBeforeShow:" + fireBeforeShow);
+
         // First, make sure the page we want to get to even exists
         if(pages.size() <= num) {
             throw new IndexOutOfBoundsException();
@@ -318,6 +321,12 @@ public class Wizard<C extends WizardContext> extends Composite {
         display.getContent().showWidget(num);
         display.getPageList().setCurrentPage(targetPage.getTitle());
 
+        // fire beforeShow
+        if(event.getFireAfterShow()) {
+            targetPage.afterShow();
+        }
+        
+        
         // fire afterNext on the last page after a delay so we don't get
         // glitches during the animation
         if(currentPage != null && event.getFireAfterNext()) {
@@ -343,6 +352,13 @@ public class Wizard<C extends WizardContext> extends Composite {
         showNextPage(true, true, true);
     }
 
+    /**
+     * Displays first page.
+     */
+    public void showFirstPage() {
+        showPage(0);
+    }
+    
     /**
      * Show the next page, firing only specific {@link WizardPage} hooks.
      * @param fireBeforeNext whether or not to call {@link WizardPage#beforeNext(NavigationEvent)}
@@ -685,4 +701,10 @@ public class Wizard<C extends WizardContext> extends Composite {
         else
             this.display.stopProcessing();
     }
+
+    public static native void logToFirebugConsoleLog(String string) /*-{
+    if(window['console'])
+    window['console'].log(string);
+    }-*/;
+
 }

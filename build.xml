@@ -19,6 +19,19 @@
         </copy>
     </target>
 
+    <target name="i18n" description="Run the i18n creator for updating WizardTexts">
+		<java classname="com.google.gwt.i18n.tools.I18NSync">
+			<arg value="net.binarymuse.gwt.client.ui.wizard.WizardTexts"/>
+			<classpath>
+	  			<pathelement location="${env.GWTPATH}/gwt-user.jar" />
+	  			<pathelement location="${env.GWTPATH}/gwt-dev.jar" />
+	  			<pathelement location="src" />
+	  			<pathelement location="bin" />
+	  		</classpath>
+		</java>
+    </target>
+
+
     <target name="jar" description="Package into JAR" depends="compile">
         <jar destfile="gwt-wizard.jar" basedir="bin" compress="true" />
     </target>

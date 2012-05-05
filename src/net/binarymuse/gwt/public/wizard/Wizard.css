@@ -43,10 +43,15 @@
 
 .muse-gwt-Wizard .wizardContent {
 	padding: 5px;
+	overflow: scroll;
 }
 
 .muse-gwt-Wizard .wizardTitle .gwt-HTML {
 	font-size: 17pt;
 	font-weight: bolder;
 	padding-left: 5px;
+}
+
+.wizardNavigation .gwt-Button {
+	white-space: nowrap;
 }

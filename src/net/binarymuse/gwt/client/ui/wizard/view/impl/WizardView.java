@@ -51,7 +51,11 @@ public class WizardView extends Composite implements Display {
 
     private static final WizardViewImages images = GWT.create(WizardViewImages.class);
 
-    public WizardView()
+    public WizardView() {
+    	this(new WizardNavigationPanel());
+    }
+    
+    public WizardView(WizardNavigationPanel wizardNavigationPanel)
     {
         // Handlers
         handlers = new HandlerFactory<Display>(this);
@@ -80,7 +84,7 @@ public class WizardView extends Composite implements Display {
         this.pageNamePanelContainer.add(this.pageNamePanel);
 
         // the navigation panel at the bottom
-        this.navigationPanel = new WizardNavigationPanel();
+        this.navigationPanel = wizardNavigationPanel;
         this.navigationPanel.addStyleName("wizardNavigation");
 
         // the main content panel
